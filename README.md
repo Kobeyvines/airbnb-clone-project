@@ -98,6 +98,39 @@ The goal is to replicate the core functionality of Airbnb and offer a smooth exp
 
 ---
 
+## 🗄️ Database Design
+
+This project uses a relational database to manage core entities and their relationships.
+
+### Entities & Key Fields
+
+#### 1. Users
+- `id`, `name`, `email`, `password`, `is_host`
+- A user can list multiple properties, make bookings, and leave reviews.
+
+#### 2. Properties
+- `id`, `title`, `description`, `location`, `price_per_night`, `host_id`
+- A property belongs to one host, has many bookings and reviews.
+
+#### 3. Bookings
+- `id`, `user_id`, `property_id`, `start_date`, `end_date`, `status`
+- A booking is made by a user for a property; each booking can have one payment.
+
+#### 4. Payments
+- `id`, `booking_id`, `amount`, `payment_method`, `payment_date`
+- Each payment is linked to a single booking.
+
+#### 5. Reviews
+- `id`, `user_id`, `property_id`, `rating`, `comment`
+- A user can review multiple properties; a property can have many reviews.
+
+### Relationships Summary
+- One **User** → Many **Properties**, **Bookings**, **Reviews**  
+- One **Property** → Many **Bookings**, **Reviews**  
+- One **Booking** → One **Payment**
+
+----
+
 ## 📈 API Documentation Overview
 
 ### REST API
