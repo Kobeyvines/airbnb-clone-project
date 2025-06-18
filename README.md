@@ -19,7 +19,7 @@ The goal is to replicate the core functionality of Airbnb and offer a smooth exp
 
 ---
 
-## 🏆 Project Goals
+## 🏆 Feature Breakdown
 
 - **User Management**  
   Secure registration, login, authentication, and profile management.
@@ -41,7 +41,7 @@ The goal is to replicate the core functionality of Airbnb and offer a smooth exp
 
 ---
 
-## 🛠️ Features Breakdown
+## 🛠️ Features Overview
 
 ### 1. API Documentation
 - **OpenAPI**: Fully documented using the OpenAPI standard.  
