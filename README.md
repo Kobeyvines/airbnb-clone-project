@@ -41,7 +41,7 @@ The goal is to replicate the core functionality of Airbnb and offer a smooth exp
 
 ---
 
-## 🛠️ Features Overview
+## 🛠️ Features Breakdown
 
 ### 1. API Documentation
 - **OpenAPI**: Fully documented using the OpenAPI standard.  
