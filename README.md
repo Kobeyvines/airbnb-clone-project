@@ -1,210 +1,122 @@
-# airbnb-clone-project
-alx pro-backend course work
 # 🏡 Airbnb Clone Backend
 
-Welcome to the **Airbnb Clone Backend** project! This repository contains the backend codebase for a scalable and feature-rich Airbnb-style application, built with Django, Django REST Framework, GraphQL, PostgreSQL, and more.
+Welcome to the **Airbnb Clone Backend** — a simplified booking platform inspired by Airbnb. This project is part of the **ALX Pro Backend Engineering** program and showcases backend development using modern tools and best practices.
 
 ---
 
-## 🚀 Objective
+## 🚀 Project Objective
 
-The backend is designed to provide a robust foundation for managing:
-
-- ✅ User interactions  
+Build a robust backend system to manage:
+- ✅ User registration, authentication, and profiles  
 - 🏠 Property listings  
 - 📅 Bookings  
 - 💳 Payments  
-
-The goal is to replicate the core functionality of Airbnb and offer a smooth experience for users and hosts alike.
-
----
-
-## 🏆 Feature Breakdown
-
-- **User Management**  
-  Secure registration, login, authentication, and profile management.
-
-- **Property Management**  
-  Listing creation, updates, and property retrieval.
-
-- **Booking System**  
-  Book and manage stays, with check-in/check-out details.
-
-- **Payment Processing**  
-  Handle transactions and record payment data.
-
-- **Review System**  
-  Users can leave reviews and ratings for properties.
-
-- **Data Optimization**  
-  Efficient data storage and retrieval using indexing and caching.
+- ⭐ Reviews
 
 ---
 
-## 🛠️ Features Overview
+## 🧩 Feature Breakdown
 
-### 1. API Documentation
-- **OpenAPI**: Fully documented using the OpenAPI standard.  
-- **Django REST Framework**: For building clean and functional RESTful APIs.  
-- **GraphQL**: For efficient and customizable data queries.
-
-### 2. User Authentication
-- **Endpoints**: `/users/`, `/users/{user_id}/`  
-- **Features**: Register, login, manage profiles.
-
-### 3. Property Management
-- **Endpoints**: `/properties/`, `/properties/{property_id}/`  
-- **Features**: CRUD operations on property listings.
-
-### 4. Booking System
-- **Endpoints**: `/bookings/`, `/bookings/{booking_id}/`  
-- **Features**: Create, update, and manage reservations.
-
-### 5. Payment Processing
-- **Endpoints**: `/payments/`  
-- **Features**: Process and record booking payments.
-
-### 6. Review System
-- **Endpoints**: `/reviews/`, `/reviews/{review_id}/`  
-- **Features**: Post and manage property reviews.
-
-### 7. Database Optimizations
-- **Indexing**: For fast lookups on critical queries.  
-- **Caching**: Powered by Redis to enhance performance.
+- **User Management**: Secure signup/login and profile handling for guests and hosts.  
+- **Property Management**: Hosts can create and manage listings with pricing and location.  
+- **Booking System**: Guests can book available properties and manage check-in/check-out.  
+- **Payment Processing**: Secure handling of booking payments via external gateways.  
+- **Review System**: Guests can leave ratings and reviews for properties.  
+- **API Access**: Exposed via REST and GraphQL APIs.  
+- **Performance Optimization**: Uses caching (Redis) and indexing for faster data access.
 
 ---
 
-## ⚙️ Tech Stack
+## 🛠️ Technology Stack
 
-| Tech | Role |
-|------|------|
-| Django | Web framework |
-| Django REST Framework | API layer |
-| GraphQL | Flexible querying |
-| PostgreSQL | Database |
-| Celery | Asynchronous tasks |
-| Redis | Caching & session store |
-| Docker | Containerization |
-| CI/CD Pipelines | Deployment automation |
+| Technology      | Purpose                                    |
+|-----------------|---------------------------------------------|
+| Django          | Web framework for API and backend logic     |
+| DRF             | RESTful API support                         |
+| GraphQL         | Flexible data querying                      |
+| PostgreSQL      | Relational database                         |
+| Redis           | Caching and task queue support              |
+| Celery          | Background tasks (e.g., notifications)      |
+| Docker          | Containerization for dev and prod parity    |
+| GitHub Actions  | CI/CD automation for testing and deployment |
 
 ---
 
 ## 👥 Team Roles
 
-- **Backend Developer**: APIs, logic, and DB models  
-- **Database Administrator**: Schema design and performance tuning  
-- **DevOps Engineer**: Deployment, monitoring, and scalability  
-- **QA Engineer**: Testing and quality assurance
+- **Backend Developer**: API logic and model creation  
+- **DB Administrator**: Schema design, indexing, and optimization  
+- **DevOps Engineer**: Containerization, CI/CD setup, and monitoring  
+- **QA Engineer**: Automated and manual testing, bug tracking  
 
 ---
 
 ## 🗄️ Database Design
 
-This project uses a relational database to manage core entities and their relationships.
+### Main Entities and Relationships:
+- **Users**: `id`, `name`, `email`, `password`, `is_host`  
+- **Properties**: `id`, `title`, `location`, `price_per_night`, `host_id`  
+- **Bookings**: `id`, `user_id`, `property_id`, `start_date`, `end_date`  
+- **Payments**: `id`, `booking_id`, `amount`, `method`, `date`  
+- **Reviews**: `id`, `user_id`, `property_id`, `rating`, `comment`
 
-### Entities & Key Fields
-
-#### 1. Users
-- `id`, `name`, `email`, `password`, `is_host`
-- A user can list multiple properties, make bookings, and leave reviews.
-
-#### 2. Properties
-- `id`, `title`, `description`, `location`, `price_per_night`, `host_id`
-- A property belongs to one host, has many bookings and reviews.
-
-#### 3. Bookings
-- `id`, `user_id`, `property_id`, `start_date`, `end_date`, `status`
-- A user makes a booking for a property; each booking can have one payment.
-
-#### 4. Payments
-- `id`, `booking_id`, `amount`, `payment_method`, `payment_date`
-- Each payment is linked to a single booking.
-
-#### 5. Reviews
-- `id`, `user_id`, `property_id`, `rating`, `comment`
-- A user can review multiple properties; a property can have many reviews.
-
-### Relationships Summary
-- One **User** → Many **Properties**, **Bookings**, **Reviews**  
-- One **Property** → Many **Bookings**, **Reviews**  
-- One **Booking** → One **Payment**
-
-----
-
-## 📈 API Documentation Overview
-
-### REST API
-Comprehensive API docs powered by OpenAPI and DRF, covering all CRUD operations.
-
-### GraphQL API
-Flexible alternative to REST for frontend queries and mutations.
+**Relationships**:
+- A user can have multiple properties, bookings, and reviews.  
+- A property can have many bookings and reviews.  
+- A booking has one payment.
 
 ---
 
 ## 🔐 API Security
 
-Security is crucial for protecting user data, preventing fraud, and maintaining trust across the platform. This project implements multiple layers of security to safeguard the backend APIs.
-
-### 🔑 Authentication
-All users must authenticate via secure login using tokens (e.g., JWT). This ensures that only verified users can access protected endpoints.
-
-### 🛂 Authorization
-Role-based access control ensures that only hosts can manage properties and only authenticated users can make bookings or payments. This prevents unauthorised actions.
-
-### 📈 Rate Limiting
-To prevent abuse and brute-force attacks, API requests will be rate-limited. This protects the platform from denial-of-service (DoS) attacks and misuse.
-
-### 🔒 Data Protection
-Sensitive user information (e.g., passwords, payment data) is encrypted and stored securely. HTTPS is enforced to protect data in transit.
-
-### 💳 Payment Security
-Payment endpoints are isolated and validated to prevent fraud. External payment gateways will handle transactions, keeping sensitive data off our servers.
+- **Authentication**: Token-based (e.g., JWT) to verify users  
+- **Authorization**: Role-based access control for hosts and guests  
+- **Rate Limiting**: Prevents abuse and DoS attacks  
+- **Data Encryption**: Secure storage and HTTPS in transit  
+- **Payment Security**: Isolated, validated, and handled via external gateways
 
 ---
 
+## 🔁 CI/CD Pipeline
 
+- **What**: Automates code testing, integration, and deployment  
+- **Why**: Ensures rapid, stable, and error-free deployments  
+- **Tools**:  
+  - **GitHub Actions**: Workflow automation  
+  - **Docker**: Environment consistency  
+  - Optional: Jenkins, AWS CodePipeline, or Heroku for hosting
 
-## 📌 Endpoints Overview
+---
+
+## 📌 API Endpoints Overview
 
 ### Users
-- `GET /users/` – List users  
-- `POST /users/` – Create user  
-- `GET /users/{user_id}/` – Retrieve user  
-- `PUT /users/{user_id}/` – Update user  
-- `DELETE /users/{user_id}/` – Delete user  
+- `GET/POST /users/`  
+- `GET/PUT/DELETE /users/{id}`
 
 ### Properties
-- `GET /properties/` – List properties  
-- `POST /properties/` – Add property  
-- `GET /properties/{property_id}/` – Retrieve property  
-- `PUT /properties/{property_id}/` – Update property  
-- `DELETE /properties/{property_id}/` – Delete property  
+- `GET/POST /properties/`  
+- `GET/PUT/DELETE /properties/{id}`
 
 ### Bookings
-- `GET /bookings/` – List bookings  
-- `POST /bookings/` – Create booking  
-- `GET /bookings/{booking_id}/` – Retrieve booking  
-- `PUT /bookings/{booking_id}/` – Update booking  
-- `DELETE /bookings/{booking_id}/` – Delete booking  
+- `GET/POST /bookings/`  
+- `GET/PUT/DELETE /bookings/{id}`
 
 ### Payments
-- `POST /payments/` – Process payment  
+- `POST /payments/`
 
 ### Reviews
-- `GET /reviews/` – List reviews  
-- `POST /reviews/` – Create review  
-- `GET /reviews/{review_id}/` – Retrieve review  
-- `PUT /reviews/{review_id}/` – Update review  
-- `DELETE /reviews/{review_id}/` – Delete review  
+- `GET/POST /reviews/`  
+- `GET/PUT/DELETE /reviews/{id}`
 
 ---
 
-## 🐳 Running the Project (Dockerized)
+## 🚀 Running the Project
 
 ```bash
-# Clone the repo
-git clone https://github.com/your-username/airbnb-clone-backend.git
-cd airbnb-clone-backend
+# Clone the repository
+git clone https://github.com/your-username/airbnb-clone-project.git
+cd airbnb-clone-project
 
-# Start the containers
+# Start services with Docker
 docker-compose up --build
