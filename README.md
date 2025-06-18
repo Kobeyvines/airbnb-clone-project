@@ -114,7 +114,7 @@ This project uses a relational database to manage core entities and their relati
 
 #### 3. Bookings
 - `id`, `user_id`, `property_id`, `start_date`, `end_date`, `status`
-- A booking is made by a user for a property; each booking can have one payment.
+- A user makes a booking for a property; each booking can have one payment.
 
 #### 4. Payments
 - `id`, `booking_id`, `amount`, `payment_method`, `payment_date`
@@ -140,6 +140,29 @@ Comprehensive API docs powered by OpenAPI and DRF, covering all CRUD operations.
 Flexible alternative to REST for frontend queries and mutations.
 
 ---
+
+## 🔐 API Security
+
+Security is crucial for protecting user data, preventing fraud, and maintaining trust across the platform. This project implements multiple layers of security to safeguard the backend APIs.
+
+### 🔑 Authentication
+All users must authenticate via secure login using tokens (e.g., JWT). This ensures that only verified users can access protected endpoints.
+
+### 🛂 Authorization
+Role-based access control ensures that only hosts can manage properties and only authenticated users can make bookings or payments. This prevents unauthorised actions.
+
+### 📈 Rate Limiting
+To prevent abuse and brute-force attacks, API requests will be rate-limited. This protects the platform from denial-of-service (DoS) attacks and misuse.
+
+### 🔒 Data Protection
+Sensitive user information (e.g., passwords, payment data) is encrypted and stored securely. HTTPS is enforced to protect data in transit.
+
+### 💳 Payment Security
+Payment endpoints are isolated and validated to prevent fraud. External payment gateways will handle transactions, keeping sensitive data off our servers.
+
+---
+
+
 
 ## 📌 Endpoints Overview
 
